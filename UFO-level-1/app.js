@@ -17,12 +17,12 @@ tableData.forEach((ufoReport) => {
     });
   });
 
-// keep the page from refreshing when hitting the filter button 
-//d3.event.preventDefault();  
-
 //listen for user-entered date
 
 var button = d3.select("#filter-btn")
+
+//preventing page from refreshing by default
+//d3.event.preventDefault()
 
 button.on("click", function() {
     let inputHTML = d3.select("#datetime"); 
