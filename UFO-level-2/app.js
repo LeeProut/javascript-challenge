@@ -40,18 +40,21 @@ function handleClick() {
     var inputValue3 = inputState.property("value");
 
     //filtering the data in the table by the input
-    var filterDate = tableData.filter(date => date.datetime === inputValue); 
-    var filterCity = tableData.filter(city => city.city === inputValue2);
-    var filterState = tableData.filter(state => state.state === inputValue3);
+    var filterDate = tableData.filter((date) => date.datetime === inputValue); 
+    var filterCity = tableData.filter((city) => city.city === inputValue2);
+    var filterState = tableData.filter((state) => state.state === inputValue3);
 
 
     tbody.html("");
 
+    // if (filterDate.length === 0) {
+    //   return ("date not found");
+    // } else {
 
     
-    filterDate.forEach((newFilter) => {
+    filterDate.forEach((date) => {
       var row = tbody.append("tr");
-      Object.entries(newFilter).forEach(([key, value]) => {
+      Object.entries(date).forEach(([key, value]) => {
         var cell = row.append("td");
         cell.text(value);
       });
@@ -74,6 +77,7 @@ function handleClick() {
     });
 
   return makeTable(newFilter);  
+    //}
 };
 
 button.on("click", handleClick);
