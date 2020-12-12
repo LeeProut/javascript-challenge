@@ -10,7 +10,7 @@ console.log(tbody);
 //write a function called makeTable to bring in tableData
 
 
-function makeTable(tableData) {
+function makeTable() {
   tableData.forEach((ufoReport) => {
     var row = tbody.append("tr");
     Object.entries(ufoReport).forEach(([key, value]) => {
@@ -18,35 +18,62 @@ function makeTable(tableData) {
       cell.text(value);
     });
   });
-  return tableData;
+  //return makeTable(tableData);
 };
-
-// keep the page from refreshing when hitting the filter button 
-//d3.event.preventDefault();
 
 //listen for user-entered date
 
 var button = d3.select("#filter-btn")
 
 function handleClick() {
-    let inputDate = d3.select("#datetime"); 
-    let inputValue = inputDate.property("value");
-    console.log("the user entered a date");
-    let inputCity = d3.select("#cityfilter");
+  //preventing page from refreshing by default
+  d3.event.preventDefault()
+
+    //selecting each input field
+    var inputDate = d3.select("#datetime"); 
+    var inputCity = d3.select("#cityfilter");
+    var inputState = d3.select("#statefilter")
+
+    //using .property to extract value
+    var inputValue = inputDate.property("value");
+    var inputValue2 = inputCity.property("value");
+    var inputValue3 = inputState.property("value");
+
+    //filtering the data in the table by the input
     var filterDate = tableData.filter(date => date.datetime === inputValue); 
-    var filterCity = tableData.filter(city => city.city === inputValue);
-    console.log(filterDate);
-    console.log(filterCity);
+    var filterCity = tableData.filter(city => city.city === inputValue2);
+    var filterState = tableData.filter(state => state.state === inputValue3);
+
+
     tbody.html("");
 
-    filterEntry.forEach((newDate) => {
+
+    
+    filterDate.forEach((newFilter) => {
       var row = tbody.append("tr");
-      Object.entries(newDate).forEach(([key, value]) => {
+      Object.entries(newFilter).forEach(([key, value]) => {
         var cell = row.append("td");
         cell.text(value);
       });
     });
-  return makeTable();  
+
+    filterCity.forEach((newFilter) => {
+      var row = tbody.append("tr");
+      Object.entries(newFilter).forEach(([key, value]) => {
+        var cell = row.append("td");
+        cell.text(value);
+      });
+    });
+
+    filterState.forEach((newFilter) => {
+      var row = tbody.append("tr");
+      Object.entries(newFilter).forEach(([key, value]) => {
+        var cell = row.append("td");
+        cell.text(value);
+      });
+    });
+
+  return makeTable(newFilter);  
 };
 
 button.on("click", handleClick);
