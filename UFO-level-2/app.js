@@ -45,15 +45,15 @@ function handleClick() {
     var params = [];
 
     if (inputValue) {
-      params.datetime = inputValue;
+      params.datetime === inputValue;
     }; 
     
     if (inputValue2) {
-      params.city = inputValue2;
+      params.city === inputValue2;
     };
 
     if (inputValue3) {
-      params.state = inputValue3;
+      params.state === inputValue3;
     };
 
     params.forEach((sighting) => {
@@ -81,7 +81,7 @@ function handleClick() {
     // console.log(filteredData);
     // var filterEntry = tableData.filter(date => date.datetime === inputValue); 
 
-    var filteredData = tableData.filter(row => row.key === params);
+    var filteredData = tableData.filter((row) => row.key === params);
     console.log(filteredData);
 
     makeTable(filteredData);
