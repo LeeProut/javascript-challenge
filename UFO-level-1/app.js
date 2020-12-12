@@ -6,7 +6,6 @@ console.log(tableData);
 var tbody = d3.select("tbody");
 console.log(tbody);
 
-// YOUR CODE HERE!
 //write a function called makeTable to bring in tableData
 
 
@@ -17,6 +16,9 @@ tableData.forEach((ufoReport) => {
       cell.text(value);
     });
   });
+
+// keep the page from refreshing when hitting the filter button 
+//d3.event.preventDefault();  
 
 //listen for user-entered date
 
