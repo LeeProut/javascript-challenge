@@ -64,9 +64,11 @@ function handleClick() {
     filterData = filterData.filter(shape => shape.shape === inputValue5);
   }
 
-  if (filterData.length > 0) 
-  {makeTable(filterData)}
-  else {console.log("Data not found")};
+  if (filterData.length > 0) {
+  makeTable(filterData)
+  } else {
+    console.log("Data not found")
+  };
   //in html, render this error message on the page, but also need to remove in the makeTable function. Template page is written in Bootstrap 3 (would need to add jquery if using a Bootstrap 4 element)
   }; 
 
