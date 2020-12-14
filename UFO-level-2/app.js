@@ -35,12 +35,17 @@ function handleClick() {
     var inputDate = d3.select("#datetime"); 
     var inputCity = d3.select("#cityfilter");
     var inputState = d3.select("#statefilter");
+    var inputCountry = d3.select("#countryfilter");
+    var inputShape = d3.select("#shapefilter");
 
     //using .property to extract value
     var inputValue = inputDate.property("value");
     var inputValue2 = inputCity.property("value");
     var inputValue3 = inputState.property("value");
+    var inputValue4 = inputCountry.property("value");
+    var inputValue5 = inputShape.property("value");
 
+  //filtering the tableData by user input
   var filterData = tableData;
 
   if (inputValue.length > 0) {
@@ -52,6 +57,12 @@ function handleClick() {
   if (inputValue3.length > 0) {
     filterData = filterData.filter(state => state.state === inputValue3);
   }  
+  if (inputValue4.length > 0) {
+    filterData = filterData.filter(country => country.country === inputValue4);
+  }
+  if (inputValue5.length > 0) {
+    filterData = filterData.filter(shape => shape.shape === inputValue5);
+  }
 
   if (filterData.length > 0) 
   {makeTable(filterData)}
