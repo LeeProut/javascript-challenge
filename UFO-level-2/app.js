@@ -1,11 +1,8 @@
 // from data.js
 var tableData = data;
-console.log(tableData);
 
 //reference to table body
 var tbody = d3.select("tbody");
-console.log(tbody);
-
 
 //function to bring in tableData
 
@@ -20,6 +17,7 @@ function makeTable(tableData) {
   });
 };
 
+//render table on page with all data
 makeTable(tableData);
 
 //select the filter button
@@ -28,6 +26,7 @@ var button = d3.select("#filter-btn")
 //create event handler
 button.on("click", handleClick);
 
+//function to define what happens after the user enters a search parameter and clicks the "Filter Data" button
 function handleClick() {
   //preventing page from refreshing by default
   d3.event.preventDefault()
@@ -42,94 +41,64 @@ function handleClick() {
     var inputValue2 = inputCity.property("value");
     var inputValue3 = inputState.property("value");
 
-    var params = [];
+  var filterData = tableData;
 
-    if (inputValue) {
-      params.datetime === inputValue;
-    }; 
+  if (inputValue.length > 0) {
+    filterData = filterData.filter(date => date.datetime === inputValue);
+  } 
+  if (inputValue2.length > 0) {
+    filterData = filterData.filter(city => city.city === inputValue2);
+  }
+  if (inputValue3.length > 0) {
+    filterData = filterData.filter(state => state.state === inputValue3);
+  }  
+
+  if (filterData.length > 0) 
+  {makeTable(filterData)}
+  else {console.log("Data not found")};
+  //in html, render this error message on the page, but also need to remove in the makeTable function. Template page is written in Bootstrap 3 (would need to add jquery if using a Bootstrap 4 element)
+  }; 
+
+  //experimenting with a different method of creating an object to store user-entered values 
+
+    // var params = {datetime:"", city: "", state: ""};
+
+    // if (inputValue) {
+    //   params.datetime = inputValue;
+    // }; 
     
-    if (inputValue2) {
-      params.city === inputValue2;
-    };
+    // if (inputValue2) {
+    //   params.city = inputValue2;
+    // };
 
-    if (inputValue3) {
-      params.state === inputValue3;
-    };
+    // if (inputValue3) {
+    //   params.state = inputValue3;
+    // };
 
-    params.forEach((sighting) => {
-        Object.entries(sighting).forEach(([key, value]) => {
-        if (key === "datetime") {
-          params.push(value);
-        }
-        if (key === "city") {
-          params.push(value);
-        }
-        if (key === "state") {
-          params.push(value);
-        }
-    });
-  });
+    // tableData.forEach((sighting) => {
+    //     Object.entries(sighting).forEach(([key, value]) => {  
+    //     if (key === "datetime") {
+    //       params.push(value);
+    //     }
+    //     if (key === "city") {
+    //       params.push(value);
+    //     }
+    //     if (key === "state") {
+    //       params.push(value);
+    //     }
+    //});
 
-  console.log(params);
-    
-    //object.entries to search params list
-    //forEach key value 07-08
-    //use key, value pair to go through each value
+    // params.forEach((sighting) => {
+    //   Object.entries(sighting).forEach(([key, value]) => {
+    //     console.log(key, value);
+    //   });
+    // });
 
-    //filtering the data in the table by the input
-    // var filteredData = tableData.filter((row) => row.key === row.value)
-    // console.log(filteredData);
-    // var filterEntry = tableData.filter(date => date.datetime === inputValue); 
+    // Object.entries(params).forEach(([key, value]) => console.log(key, value));
 
-    var filteredData = tableData.filter((row) => row.key === params);
-    console.log(filteredData);
-
-    makeTable(filteredData);
-
-    // var filteredData = tableData.filter(function(row) {
-    //   return row.key === row;
-    // });  
+    // var filteredData = tableData.filter((row) => row.key === row.value);
     // console.log(filteredData);
 
-    // var filteredData = tableData.filter(handleClick);
-    // console.log(filteredData);
-
-    // var filterDate = tableData.filter((date) => date.datetime === inputValue); 
-    // var filterCity = filterDate.filter((city) => city.city === inputValue2);
-    // var filterState = tableData.filter((state) => state.state === inputValue3);
-
-    // if (filterDate.length === 0) {
-    //   return ("date not found");
-    // } else {
-
-    // makeTable(filterDate);
-
-    
-
-  //   filterDate.forEach((date) => {
-  //     var row = tbody.append("tr");
-  //     Object.entries(date).forEach(([key, value]) => {
-  //       var cell = row.append("td");
-  //       cell.text(value);
-  //     });
-  //   });
-
-  //   filterCity.forEach((newFilter) => {
-  //     var row = tbody.append("tr");
-  //     Object.entries(newFilter).forEach(([key, value]) => {
-  //       var cell = row.append("td");
-  //       cell.text(value);
-  //     });
-  //   });
-
-  //   filterState.forEach((newFilter) => {
-  //     var row = tbody.append("tr");
-  //     Object.entries(newFilter).forEach(([key, value]) => {
-  //       var cell = row.append("td");
-  //       cell.text(value);
-  //     });
-  //   });
-
-  // makeTable(newFilter);  
-    //}
-};
+    // makeTable(filteredData);
+  //});  
+  
