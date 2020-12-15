@@ -11,11 +11,11 @@
 ### Part 2: 
 * rendering the table and allowing the user to enter a value for any of the following values, as well as any combination of the following values: 
 
-- [ ] date
-- [ ] city
-- [ ] state
-- [ ] country
-- [ ] shape
+- [x] date
+- [x] city
+- [x] state
+- [x] country
+- [x] shape
 
 **Filtering by date alone** | **Filtering by all of the values**
 --------------------------  | -------------------------
