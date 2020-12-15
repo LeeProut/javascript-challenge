@@ -4,7 +4,7 @@
 
 
 ### Part 1: 
-* rendering the table and allowing the user to enter a date for filtering the data 
+* rendering the table and allowing the user to enter a date for filtering the data:
 
 ![UFO table date filter](/images/filterDatePt1.png)
 
