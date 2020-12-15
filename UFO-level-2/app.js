@@ -69,9 +69,12 @@ function handleClick() {
   } else {
     console.log("Data not found")
   };
-  //in html, render this error message on the page, but also need to remove in the makeTable function. Template page is written in Bootstrap 3 (would need to add jquery if using a Bootstrap 4 element)
+
   }; 
 
+  //in html, render this error message on the page, but also need to remove in the makeTable function. 
+  //Template page is written in Bootstrap 3 (would need to add jquery if using a Bootstrap 4 element)
+  
   //experimenting with a different method of creating an object to store user-entered values 
 
     // var params = {datetime:"", city: "", state: ""};
